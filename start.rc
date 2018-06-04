@@ -1,0 +1,7 @@
+listeners
+uselistener http
+set Name http4433
+set DefaultProfile /admin/login.php,/console/dashboard.asp,/news/today.jsp| Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0);
+set Host 206.81.4.44
+set Port 4433
+execute
